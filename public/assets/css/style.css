@@ -1,3 +1,15 @@
+.navbar {
+  padding: 0 10%;
+}
+
+.footer {
+  width: 100%;
+  background-color: red;
+  color: white;
+  text-align: center;
+  margin-top: 20px;
+}
+
 .button-with-padding {
   margin-bottom: 10px;
 }
