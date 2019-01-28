@@ -18,7 +18,7 @@
 <body>
   <!-- Start Nav -->
   <nav class="navbar navbar-light bg-light">
-    <a href="/contact">Contact Us</a>
+      <a href="/contact">Contact Us</a>
     <a class="navbar-brand" href="/">Navbar</a>
     <div class="nav justify-content-end">
       <div class="dropdown">
@@ -38,17 +38,31 @@
 
   <!-- End Nav -->
   <div class="container">
-    <div class="row">
-      <div class="mx-auto col-lg-6 col-md-8 col-sm-12">
-        <img class="brochure-img" src="public/assets/images/trifold-intellibreeze-customer2.5-1.jpg" class="img class="
-          brochure-img"-fluid" alt="Responsive image">
-      </div>
-    </div>
-    <div class="row">
-      <div class="mx-auto col-lg-6 col-md-8 col-sm-12">
-        <img class="brochure-img" src="public/assets/images/trifold-intellibreeze-customer2.5-2.jpg" class="img-fluid"
-          alt="Responsive image">
-      </div>
+    <div class="row justify-content-center">
+      <h2>Contact Us</h2>
+      <form class="contact-form col-lg-6 col-med-8 col-sm-12  ">
+        <div class="form-group">
+          <label for="contactFirstName">First Name</label>
+          <input type="text" class="form-control" id="contactFirstName" placeholder="first name">
+        </div>
+        <div class="form-group">
+          <label for="cantactLastName">Last Name</label>
+          <input type="text" class="form-control" id="cantactLastName" placeholder="last name">
+        </div>
+        <div class="form-group">
+          <label for="contactEmail">Email address</label>
+          <input type="email" class="form-control" id="contactEmail" placeholder="email">
+        </div>
+        <div class="form-group">
+          <label for="contactPhone">Phone Number</label>
+          <input type="tel" class="form-control" id="contactPhone" placeholder="phone">
+        </div>
+        <div class="form-group">
+            <label for="contactMessage">Message</label>
+            <textarea type="tel" class="form-control" id="contactMessage" placeholder="I need more info..."></textarea>
+          </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
     </div>
   </div>
 

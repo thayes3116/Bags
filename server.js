@@ -37,6 +37,10 @@ app.get('/solar-attic-fan', function(req, res) {
 	res.sendFile(path.join(__dirname + '/public/solar-attic-fan.html'));
 });
 
+app.get('/contact', function(req, res) {
+	res.sendFile(path.join(__dirname + '/public/contact.html'));
+});
+
 app.listen(PORT, function() {
   console.log("App listening on PORT " + PORT);
 });
