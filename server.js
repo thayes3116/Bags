@@ -1,8 +1,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var exphbs  = require('express-handlebars');
-
-const Email = require('email-templates');
+require('dotenv').config()
 var nodemailer = require('nodemailer');
 var app = express();
 
@@ -50,50 +49,41 @@ app.get('/contact', function(req, res) {
 app.post('/contact', function(req, res) {
 	console.log(req.body)
 	var transporter = nodemailer.createTransport({
-		service: 'gmail',
+		host: process.env.EMAIL_HOST,
 		port: 465,
-    secure: true,
+		secure: true, 
 		auth: {
-			user: 'timhayes3116@gmail.com',
-			pass: 'timbill13'
+			user: process.env.EMAIL_USER,
+			pass: process.env.EMAIL_PASS
 		}
 	});
 	
 	var mailOptions = {
-		from: 'timhayes3116@gmail.com',
+		from: 'tim3116tim@zoho.com',
 		to: 'timhayes3116@gmail.com',
 		subject: 'New Contact',
-		text: req.body
+		html: `<p>First Name: ${req.body.firstName}</p><p>Last Name: ${req.body.lastName}</p><p>Email: ${req.body.email}</p><p>Phone: ${req.body.phone}</p><p>Message: ${req.body.message}</p>`
 	};
 	
 	transporter.sendMail(mailOptions, function(error, info){
 		if (error) {
 			console.log(error);
 		} else {
-			console.log('Email sent: ' + info.response);
+			var mailOptionsSender = {
+				from: 'tim3116tim@zoho.com',
+				to: req.body.email,
+				subject: 'Contact Made',
+				html: `<p>Thank you for your interest.</p><p>A representative will contact you shortly!</p>`
+			};
+			transporter.sendMail(mailOptionsSender, function(error, info){
+				if (error) {
+					console.log(error);
+				} else {
+					console.log(info)
+				}
+			});
 		}
 	});
-	// const email = new Email({
-	// 	message: {
-	// 		from: 'niftylettuce@gmail.com'
-	// 	},
-	// 	// uncomment below to send emails in development/test env:
-	// 	send: true,
-	// 	transport: {
-	// 		jsonTransport: true
-	// 	}
-	// });
-	
-	// email
-	// 	.send({
-	// 		template: 'contact',
-	// 		message: {
-	// 			to: 'timhayes3116@gmail.com'
-	// 		},
-	// 		locals: req.body
-	// 	})
-	// 	.then(console.log)
-	// 	.catch(console.error);
 });
 
 app.listen(PORT, function() {
