@@ -20,7 +20,10 @@
   "homepage": "https://github.com/thayes3116/Bags#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "email-templates": "^5.0.3",
     "express": "^4.16.4",
-    "express-handlebars": "^3.0.0"
+    "express-handlebars": "^3.0.0",
+    "nodemailer": "^5.1.1",
+    "pug": "^2.0.3"
   }
 }

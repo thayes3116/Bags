@@ -1,10 +1,9 @@
 var express = require("express");
 var bodyParser = require("body-parser");
-var path = require("path");
 var exphbs  = require('express-handlebars');
 
-
-
+const Email = require('email-templates');
+var nodemailer = require('nodemailer');
 var app = express();
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
@@ -32,10 +31,6 @@ app.get('/', function (req, res) {
 	res.render('home');
 });
 
-app.get('/', function(req, res) {
-	res.sendFile(path.join(__dirname + '/public/index.html'));
-});
-
 app.get('/radiant-barrier', function(req, res) {
 	res.render('rad-barrier');
 });
@@ -50,6 +45,55 @@ app.get('/solar-attic-fan', function(req, res) {
 
 app.get('/contact', function(req, res) {
 	res.render('contact');
+});
+
+app.post('/contact', function(req, res) {
+	console.log(req.body)
+	var transporter = nodemailer.createTransport({
+		service: 'gmail',
+		port: 465,
+    secure: true,
+		auth: {
+			user: 'timhayes3116@gmail.com',
+			pass: 'timbill13'
+		}
+	});
+	
+	var mailOptions = {
+		from: 'timhayes3116@gmail.com',
+		to: 'timhayes3116@gmail.com',
+		subject: 'New Contact',
+		text: req.body
+	};
+	
+	transporter.sendMail(mailOptions, function(error, info){
+		if (error) {
+			console.log(error);
+		} else {
+			console.log('Email sent: ' + info.response);
+		}
+	});
+	// const email = new Email({
+	// 	message: {
+	// 		from: 'niftylettuce@gmail.com'
+	// 	},
+	// 	// uncomment below to send emails in development/test env:
+	// 	send: true,
+	// 	transport: {
+	// 		jsonTransport: true
+	// 	}
+	// });
+	
+	// email
+	// 	.send({
+	// 		template: 'contact',
+	// 		message: {
+	// 			to: 'timhayes3116@gmail.com'
+	// 		},
+	// 		locals: req.body
+	// 	})
+	// 	.then(console.log)
+	// 	.catch(console.error);
 });
 
 app.listen(PORT, function() {
