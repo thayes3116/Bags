@@ -1,13 +1,27 @@
 .navbar {
   padding: 0 10%;
+  height: 8 0px;
+}
+
+#contact-link {
+  color: black;
+}
+
+.btn-secondary {
+  background-color: #f8f9fa;
+  border-color:#f8f9fa;
+  color: black;
 }
 
 .footer {
   width: 100%;
-  background-color: red;
-  color: white;
-  text-align: center;
+  background-color: #f8f9fa;
+  color: black;
+  justify-content: center;
   margin-top: 20px;
+  height: 10vh;
+  display: flex;
+  align-items: center;
 }
 
 .button-with-padding {
@@ -33,3 +47,8 @@
 #contact-title {
   margin-top: 20px;
 }
+
+#logo {
+  height: 80px;
+}
+
