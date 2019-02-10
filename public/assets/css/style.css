@@ -1,10 +1,20 @@
 .navbar {
   padding: 0 10%;
   height: 8 0px;
+  margin-bottom: 10px;
+}
+
+.img-fluid {
+  max-width: 500px;
 }
 
 #contact-link {
   color: black;
+}
+
+.graph-img {
+  float: left;
+  margin: 10px;
 }
 
 .btn-secondary {
